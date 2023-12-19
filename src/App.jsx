@@ -8,7 +8,7 @@ function App() {
   function handleSelect(selectedButton)
   { //selectedButton => Components, JSX, Props, States
 
-      console.log("Hello World selected ");
+      console.log(selectedButton);
   }
 
 
@@ -41,10 +41,11 @@ function App() {
         <section id ="examples">
           <h2>Examples</h2>
           <menu>
-           <TabButton onSelect={handleSelect} >Components</TabButton>  {/* onSelect will be used as a trigger when the button i clicked */}
-            <TabButton onSelect={handleSelect} >JSX</TabButton>
-            <TabButton onSelect={handleSelect} >Props</TabButton>
-            <TabButton onSelect={handleSelect} >States</TabButton>
+           <TabButton onSelect={() => handleSelect('components')} >Components</TabButton>  {/* onSelect will be used as a trigger when the button i clicked */}
+            <TabButton onSelect={() => handleSelect('jsx')} >JSX</TabButton>
+            <TabButton onSelect={() => handleSelect('props')} >Props</TabButton>
+            <TabButton onSelect={() => handleSelect('states')} >States</TabButton>
+            {/* using arrow function to pass identifiers to the onselct, that would assit with knowing which button was selected */}
 
           </menu>
 
