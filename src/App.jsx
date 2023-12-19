@@ -1,16 +1,19 @@
-
+import { useState } from 'react';
 import {CORE_CONCEPTS} from './data.js'; //importing the array from the data.js file 
 import Header from "./components/Header/Header.jsx";
 import CoreConcept from './components/CoreConcept.jsx';
 import TabButton from './components/TabButton.jsx';
 
 function App() {
+
+const [selectedTopic, setSelectedTopic] = useState('Please click a button'); //using the useState function to change the state of the app component
+
   function handleSelect(selectedButton)
   { //selectedButton => Components, JSX, Props, States
-
+      setSelectedTopic(selectedButton);
       console.log(selectedButton);
   }
-
+ 
 
   return (
     <div>
@@ -48,6 +51,7 @@ function App() {
             {/* using arrow function to pass identifiers to the onselct, that would assit with knowing which button was selected */}
 
           </menu>
+          {selectedTopic}
 
         </section>
        
