@@ -15,6 +15,25 @@ const [selectedTopic, setSelectedTopic] = useState(null); //using the useState f
       console.log(selectedButton);
   }
  
+// storing the text to be displayed if no tabButton is selected in a variable
+let tabContent = <p>Please select a topic</p>;
+{/* using a confitional statement to display a text before a button is select when the page first loads */}
+if(selectedTopic)
+{
+  tabContent = <div id= "tab-content"> 
+  {/* below code is used to get the date from the EXAMPLE object in dat.js. The valuse it taken from the keys that are stored in the selected topic. */}
+
+
+<h3>{EXAMPLES[selectedTopic].title }</h3> 
+<p>{EXAMPLES[selectedTopic].description}</p>
+<pre> 
+<code>{EXAMPLES[selectedTopic].code}</code>
+
+</pre>
+  </div> }
+  
+
+
 
   return (
     <div>
@@ -45,31 +64,19 @@ const [selectedTopic, setSelectedTopic] = useState(null); //using the useState f
         <section id ="examples">
           <h2>Examples</h2>
           <menu>
-           <TabButton onSelect={() => handleSelect('components')} >Components</TabButton>  {/* onSelect will be used as a trigger when the button i clicked */}
-            <TabButton onSelect={() => handleSelect('jsx')} >JSX</TabButton>
-            <TabButton onSelect={() => handleSelect('props')} >Props</TabButton>
-            <TabButton onSelect={() => handleSelect('state')} >States</TabButton>
+           <TabButton isSelected={selectedTopic === 'components'} onSelect={() => handleSelect('components')} >Components</TabButton>  {/* onSelect will be used as a trigger when the button i clicked */}
+            <TabButton isSelected={selectedTopic === 'jsx'} onSelect={() => handleSelect('jsx')} >JSX</TabButton>
+            <TabButton isSelected={selectedTopic === 'props'} onSelect={() => handleSelect('props')} >Props</TabButton>
+            <TabButton isSelected={selectedTopic === 'state'} onSelect={() => handleSelect('state')} >States</TabButton>
             {/* using arrow function to pass identifiers to the onselct, that would assit with knowing which button was selected */}
 
           </menu>
-          {/* using a confitional statement to display a text before a button is select when the page first loads */}
-          {!selectedTopic ?<p>PLease select a topic</p> :<div id= "tab-content"> 
-          {/* below code is used to get the date from the EXAMPLE object in dat.js. The valuse it taken from the keys that are stored in the selected topic. */}
-       
-        
-        <h3>{EXAMPLES[selectedTopic].title }</h3> 
-        <p>{EXAMPLES[selectedTopic].description}</p>
-        <pre> 
-      <code>{EXAMPLES[selectedTopic].code}</code>
-
-        </pre>
-          </div> }
-          
+          {/* displaying the content stored in  the tabContent based on the TabButtonselected */}
+         {tabContent}
         </section>
        
       </main>
     </div>
   );
 }
-
 export default App;
