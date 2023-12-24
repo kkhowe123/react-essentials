@@ -1,5 +1,6 @@
 This project is my first project for React. This was used to understand better some of the basic and intermediate features of react. 
 
+
 ![Screenshot_20231224_181548](https://github.com/kkhowe123/react-essentials/assets/37699957/31713246-589e-453a-99ca-5d8309dbdcfd)
 
 
