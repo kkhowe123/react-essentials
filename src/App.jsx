@@ -1,4 +1,4 @@
-import { useState } from 'react'; 
+import { useState, Fragment } from 'react'; 
 import { EXAMPLES } from './data.js';// importing an object with with propertyies containg key value pairs to be used to display on the tab-button 
 import {CORE_CONCEPTS} from './data.js'; //importing the array from the data.js file 
 import Header from "./components/Header/Header.jsx";
@@ -36,7 +36,7 @@ if(selectedTopic)
 
 
   return (
-    <div>
+    <>
       <Header />
       <main>
 
@@ -44,20 +44,11 @@ if(selectedTopic)
         {/* to display the core concepts on the webpage */}
           <h2>Time to get started!</h2>
           <ul>
-            <CoreConcept 
-            /*Setting props for the components*/
-              title={CORE_CONCEPTS[0].title}
-              description={CORE_CONCEPTS[0].description}
-              image={CORE_CONCEPTS[0].image}/>
+            {/* Using the map feature below to output the array of objects in data.js dynamically. This will help with the performance of the application and if one of the data is delete it won't break the application */}
+            
+            {CORE_CONCEPTS.map((conceptItem) =><CoreConcept  key={conceptItem.title}{...conceptItem}/>)} 
 
-            <CoreConcept {...CORE_CONCEPTS[1]} //using the spread operator to extract the key value pairs from the array/
-             />
-
-            <CoreConcept {...CORE_CONCEPTS[2]} //using the spread operator to extract the key value pairs from the array/
-             />
-
-            <CoreConcept {...CORE_CONCEPTS[3]} //using the spread operator to extract the key value pairs from the array/
-             />
+            
           </ul>
 
         </section> 
@@ -76,7 +67,7 @@ if(selectedTopic)
         </section>
        
       </main>
-    </div>
+    </>
   );
 }
 export default App;
